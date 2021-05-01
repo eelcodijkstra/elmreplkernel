@@ -60,7 +60,7 @@ class ElmWrapper(object):
             prompt = self._expect_prompt(timeout=timeout)
         
         while prompt == 0 and self.child.before and \
-              (self.child.before[-1] == "n" or self.child.before[-1] == "-"):
+              (self.child.before[-1].isalpha() or self.child.before[-1] == "-"):
             # res.append("#")
             res.append(self.child.before)
             # res.append(">> ") # ???
