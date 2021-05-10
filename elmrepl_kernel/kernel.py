@@ -59,12 +59,15 @@ class ElmWrapper(object):
                 # res.append("]")              
             prompt = self._expect_prompt(timeout=timeout)
         
-        while prompt == 0 and self.child.before and \
-              (self.child.before[-1].isalpha() or self.child.before[-1] == "-"):
-            # res.append("#")
+        # the following loop reads the "pseudo-prompts" occurring 
+        # in the REPL output (function type annotation) and error messages
+        while (prompt == 0 or prompt == 1) and \
+              self.child.before and \
+              (self.child.before[-1].isalpha() or self.child.before[-1].isdigit() or \
+               self.child.before[-1] == "-"):
+            # res.append("{")
             res.append(self.child.before)
-            # res.append(">> ") # ???
-            # self.child.sendline("")    (deze moet echt niet...)        
+            # res.append("}")   
             # res.append("(")
             res.append(self.child.after)
             # res.append(")")           
