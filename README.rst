@@ -11,4 +11,14 @@ http://jupyter-client.readthedocs.io/en/latest/wrapperkernels.html
 Installation
 ------------
 
-P.M.
+1. Install the code in the library-environment
+
+```
+python setup.py install
+```
+
+2. Install the kernel in the Jupyter environment
+
+```
+python -m elmrepl_kernel.install
+```
